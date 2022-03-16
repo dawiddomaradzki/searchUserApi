@@ -1,0 +1,24 @@
+.usersWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 70vh;
+  overflow: auto;
+  width: 800px;
+  margin: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #adadad;
+    border-radius: 3px;
+  }
+
+  background-color: #ebebeb;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navigationWrapper {
+  height: 200px;
+}

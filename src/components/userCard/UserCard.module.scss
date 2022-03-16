@@ -1,0 +1,26 @@
+.wrapper {
+  width: 80%;
+  height: 100px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid black;
+  display: flex;
+}
+
+.imgWrapper {
+  justify-content: center;
+  margin-right: 40px;
+  & img {
+    border-radius: 50%;
+  }
+}
+
+.name,
+.imgWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.additionalInfo {
+  margin-left: auto;
+  width: 300px;
+}
