@@ -1,0 +1,12 @@
+.button {
+  height: 60px;
+  width: 200px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 24px;
+
+  &:hover {
+    background: rgb(255, 255, 255);
+    opacity: 0.7;
+  }
+}

@@ -20,5 +20,10 @@
 }
 
 .navigationWrapper {
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 32px;
+  width: 800px;
+  margin: auto;
+  align-items: center;
 }
