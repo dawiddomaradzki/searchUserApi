@@ -1,6 +1,14 @@
 import { FC } from "react";
 import styles from "./Button.module.scss";
 
-export const Button: FC = () => {
-  return <button className={styles.button}>Reload users</button>;
+interface ButtonProps {
+  reloadUsers: () => void;
+}
+
+export const Button: FC<ButtonProps> = ({ reloadUsers }) => {
+  return (
+    <button className={styles.button} onClick={() => reloadUsers()}>
+      Reload users
+    </button>
+  );
 };
