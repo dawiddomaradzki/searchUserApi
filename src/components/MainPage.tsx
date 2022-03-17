@@ -21,7 +21,10 @@ export const MainPage: FC = () => {
   const usersList = async () => {
     try {
       const resp = await getUsersRequest();
-      setFetchedUsers(resp.data.results);
+      setFetchedUsers([]);
+      setTimeout(() => {
+        setFetchedUsers(resp.data.results);
+      }, 1000);
     } catch (err) {
       console.log(err);
     }
@@ -31,8 +34,12 @@ export const MainPage: FC = () => {
   }, []);
 
   const displayFetchedUsers = fetchedUsers
-    .filter((item: any) =>
-      item.name.last.toLowerCase().includes(searchedWord.toLocaleLowerCase())
+    .filter(
+      (item: any) =>
+        item.name.last
+          .toLowerCase()
+          .includes(searchedWord.toLocaleLowerCase()) ||
+        item.name.first.toLowerCase().includes(searchedWord.toLocaleLowerCase())
     )
     .map((user: any) => (
       <UserCard
@@ -56,7 +63,13 @@ export const MainPage: FC = () => {
         />
         <Button reloadUsers={usersList} />
       </div>
-      <div className={styles.usersWrapper}>{displayFetchedUsers}</div>
+      <div className={styles.usersWrapper}>
+        {fetchedUsers.length === 0 ? (
+          <div>Loading...</div>
+        ) : (
+          displayFetchedUsers
+        )}
+      </div>
     </div>
   );
 };
