@@ -50,6 +50,7 @@ export const MainPage: FC = () => {
         surname={user.name.last}
         email={user.email}
         city={user.location.city}
+        gender={user.gender}
       />
     ));
 
