@@ -8,7 +8,8 @@
 
 .imgWrapper {
   justify-content: center;
-  margin-right: 40px;
+  margin: 0 40px 0 16px;
+
   & img {
     border-radius: 50%;
   }
@@ -23,4 +24,8 @@
 .additionalInfo {
   margin-left: auto;
   width: 300px;
+}
+
+.gender {
+  background: #54b0ff;
 }

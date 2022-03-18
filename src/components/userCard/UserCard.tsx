@@ -1,6 +1,9 @@
 import { FC } from "react";
+import cn from "classnames";
 
 import styles from "./UserCard.module.scss";
+
+type Gender = "female" | "male";
 
 interface UserCardProps {
   avatar: string;
@@ -9,6 +12,7 @@ interface UserCardProps {
   surname: string;
   email: string;
   city: string;
+  gender: Gender;
 }
 
 export const UserCard: FC<UserCardProps> = ({
@@ -18,9 +22,12 @@ export const UserCard: FC<UserCardProps> = ({
   surname,
   email,
   city,
+  gender,
 }) => {
   return (
-    <section className={styles.wrapper}>
+    <section
+      className={cn(styles.wrapper, gender === "female" && styles.gender)}
+    >
       <div className={styles.imgWrapper}>
         <img src={avatar} alt="Avatar" />
       </div>
