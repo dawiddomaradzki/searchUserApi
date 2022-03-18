@@ -9,6 +9,8 @@ import { Button } from "./button/Button";
 export const MainPage: FC = () => {
   const [fetchedUsers, setFetchedUsers] = useState<any>([]);
   const [searchedWord, setSearchedWord] = useState<string>("");
+  const [searchedUsers, setSearchedUsers] = useState([]);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const handleChangeSearchedWord = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchedWord(e.target.value);
@@ -26,6 +28,11 @@ export const MainPage: FC = () => {
         setFetchedUsers(resp.data.results);
       }, 1000);
     } catch (err) {
+      setTimeout(() => {
+        setIsError(true);
+        alert("Something went wrong");
+      }, 1000);
+
       console.log(err);
     }
   };
@@ -54,6 +61,30 @@ export const MainPage: FC = () => {
       />
     ));
 
+  const userNotFound = () => {
+    if (fetchedUsers.length !== 0 && searchedUsers.length === 0) {
+      return <div className={styles.info}>No user found</div>;
+    }
+  };
+
+  useEffect(() => {
+    setSearchedUsers(
+      fetchedUsers.filter(
+        (item: any) =>
+          item.name.last
+            .toLowerCase()
+            .includes(searchedWord.toLocaleLowerCase()) ||
+          item.name.first
+            .toLowerCase()
+            .includes(searchedWord.toLocaleLowerCase())
+      )
+    );
+
+    userNotFound();
+  }, [searchedWord]);
+
+  console.log(fetchedUsers);
+
   return (
     <div>
       <div className={styles.navigationWrapper}>
@@ -64,9 +95,11 @@ export const MainPage: FC = () => {
         />
         <Button reloadUsers={usersList} />
       </div>
+
       <div className={styles.usersWrapper}>
-        {fetchedUsers.length === 0 ? (
-          <div>Loading...</div>
+        {userNotFound()}
+        {fetchedUsers.length === 0 && isError === false ? (
+          <div className={styles.info}>Loading...</div>
         ) : (
           displayFetchedUsers
         )}
