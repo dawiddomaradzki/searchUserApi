@@ -1,9 +1,8 @@
 import { FC } from "react";
 import cn from "classnames";
+import { Gender } from "../../api/users/users.types";
 
 import styles from "./UserCard.module.scss";
-
-type Gender = "female" | "male";
 
 interface UserCardProps {
   avatar: string;
