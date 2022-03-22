@@ -14,7 +14,7 @@ export const MainPage: FC = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [showUserNoFoundInfo, setShowUserNoFoundInfo] =
     useState<boolean>(false);
-  console.log(fetchedUsers);
+
   const handleChangeSearchedWord = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchedWord(e.target.value);
   };
@@ -35,8 +35,6 @@ export const MainPage: FC = () => {
         setIsError(true);
         alert("Something went wrong");
       }, 1000);
-
-      console.log(err);
     }
   };
   useEffect(() => {
@@ -95,7 +93,7 @@ export const MainPage: FC = () => {
 
       <div className={styles.usersWrapper}>
         {searchedUsers.length === 0 && showUserNoFoundInfo && (
-          <div className={styles.info}>No user found</div>
+          <div className={styles.info}>No results</div>
         )}
         {fetchedUsers.length === 0 && isError === false ? (
           <div className={styles.info}>Loading...</div>
